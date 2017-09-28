@@ -1,18 +1,44 @@
 var inquirer = require("inquirer");
+var basicCard = require('./basic.js');
+var cardData = require('./basic.json');
+var count = 0;
+var playAgain; 
 
-function basicCard(front, back) {
-this.front = front;
-this.back = back;
+function startGame() {
+    if (count < cardData.length) {
+        var chosenCard = new basicCard(cardData[count].front, cardData[count].back);
+        inquirer.prompt([
+            {
+                message: cardData[count].front,
+                name: "question"
+            }
+        ]).then(function (answer) {				
+            if (answer.question === cardData[count].back) {
+                console.log("You are correct.\n");
+                count++;
+                startGame();
+            } else {
+                console.log("That is incorrect. The correct answer is " + cardData[count].back + ".\n")
+                count++;
+                startGame();
+            }
+        })
+    }
 }
 
-var season = new basicCard("What season comes after fall?", "Winter");
-var liberty = new basicCard("In what city is the Statue of Liberty?", "New York");
-var sunflower = new basicCard("What kind of flower is yellow and looks like the sun?", "Sunflower")
-var redSox = new basicCard("Where do the Red Sox play baseball?", "Boston")
-var florida = new basicCard("What ocean surrounds Florida's east coast?", "Atlantic Ocean")
 
-module.exports = basicCard();
+startGame();
 
 
+
+
+
+// function round(){
+//     //codes
+// }
+
+// function prompts(){
+//     //codes
+// }
 
 

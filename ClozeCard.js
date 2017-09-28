@@ -1,24 +1,31 @@
 var inquirer = require("inquirer");
+var clozeCard = require('./cloze.js');
+var cardData = require('./cloze.json');
+var count = 0;
+var points = 0;
 
-function clozeCard(text, partial, cloze, fullText){
-    this.text = text;
-    this.partial = partial;
-    this.cloze = cloze;
-    this.fullText = fullText;
+function startCloze() {
+    if (count < cardData.length) {
+    var chosenCard = new clozeCard(cardData[count].partial, cardData[count].cloze, cardData[count].fullText);     
+        inquirer.prompt([
+            {
+                message: cardData[count].partial,
+                name: "question"
+            }
+        ]).then(function (answer) {				
+            if (answer.question === cardData[count].cloze) {
+                console.log("You are correct.\n");
+                count++;
+                points++;
+                startCloze();
+            } else {
+                console.log("That is incorrect. The correct answer is " + cardData[count].cloze + ".\n")
+                count++;
+                startCloze();
+            }
+        })
+    }
 }
 
+startCloze();
 
-//this is weird? how do I make a dynamic value?
-// clozeCard.prototype.partial = "value" 
-// var testing = new clozeCard("Oh wow?", "YESSSS");
-// console.log(testing.partial);
-
-var red = new clozeCard("", "...is the color at the top of the rainbow", "Red", "Red is the color at the top of the rainbow");
-var alaska = new clozeCard("", "... is the largest state (by size) in the United States", "Alaska", "Alaska is the largest state (by size) in the United States");
-var June = new clozeCard("", "...is the month in which summer begins", "June", "June is the month in which summer begins");
-var Ariel = new clozeCard("", "...is the name of the princess in 'The Little Mermaid'", "Ariel", "Ariel is the name of the princess in 'The Little Mermaid");
-var Paris = new clozeCard("", "...is the city with the Eiffel Tower", "Paris", "Paris is the city with the Eiffel Tower");
-
-// console.log(red);
-
-module.exports = clozeCard();

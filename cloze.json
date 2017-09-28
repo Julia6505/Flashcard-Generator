@@ -1,0 +1,27 @@
+[
+{
+    "partial": "________ is the color at the top of the rainbow",
+    "cloze": "red",
+    "fullText": "Red is the color at the top of the rainbow"
+},
+{
+    "partial": "________ is the largest state (by size) in the United States",
+    "cloze": "Alaska",
+    "fullText": "Alaska is the largest state (by size) in the United States"
+},
+{
+    "partial": "________ is the month in which summer begins",
+    "cloze": "June",
+    "fullText": "June is the month in which summer begins"
+},
+{
+    "partial": "________ is the name of the princess in 'The Little Mermaid'",
+    "cloze": "Ariel",
+    "fullText": "Ariel is the name of the princess in 'The Little Mermaid'"
+},
+{
+    "partial": "________ is the city with the Eiffel Tower",
+    "cloze": "Paris",
+    "fullText": "Paris is the city with the Eiffel Tower"
+}
+]

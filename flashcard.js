@@ -1,64 +1,53 @@
-var basicCardFile = require("./BasicCard.js");
-var clozeCardFile = require("./ClozeCard.js");
+var cardBasic = require("./BasicCard.js");
+var clozeCard = require("./ClozeCard.js");
+var inquirer = require("inquirer");
 
-//new object info for basic questions
-// var season = new basicCard("What season comes after fall?", "Winter");
-// var liberty = new basicCard("In what city is the Statue of Liberty?", "New York");
-// var sunflower = new basicCard("What kind of flower is yellow and looks like the sun?", "Sunflower")
-// var redSox = new basicCard("Where do the Red Sox play baseball?", "Boston")
-// var florida = new basicCard("What ocean surrounds Florida's east coast?", "Atlantic Ocean")
+// new object info for basic questions
+var season = new basicCard("What season comes after fall?", "Winter");
+var liberty = new basicCard("In what city is the Statue of Liberty?", "New York");
+var sunflower = new basicCard("What kind of flower is yellow and looks like the sun?", "Sunflower")
+var redSox = new basicCard("Where do the Red Sox play baseball?", "Boston")
+var florida = new basicCard("What ocean surrounds Florida's east coast?", "Atlantic Ocean")
 
-// console.log(basicCardFile, "WHAT UPPPP");
-//basic flashcard questions
+// console.log(season.front + season.back);
+// console.log(liberty.front + "" + liberty.back);
+// console.log(sunflower.front + sunflower.back);
+
+// console.log(basicCard);
+
+// //basic flashcard questions
 inquirer.prompt([
     {
-        name: "front",
-        message: "What season comes after fall?",
+        message: season.front,
+        name: "firstSeason",
+        validate: function(name) {
+        if (name !== season.back) {
+            console.log(" You lose!")
+            return false;
+        }else {
+            console.log(" You win")
+            return true;
+          }
+        }
     },
     {
         name: "back",
-        message: "Winter",
+        message: season.back,
+        validate: function(name) {
+            if (name !== season.back) {
+                console.log(" You lose!")
+                return false;
+            }else {
+                console.log(" You win")
+                return true;
+              }
+            } 
     },
-    {
-        name: "front",
-        message: "In what city is the Statue of Liberty?",
-    },
-    {
-        name: "back",
-        message: "New York",
-    },
-    {
-        name: "front",
-        message: "What kind of flower is yellow and looks like the sun?"
-    },
-    {
-        name: "back",
-        message: "Sunflower",
-    },
-    {
-        name: "front",
-        message: "Where do the Red Sox play baseball?"
-    },
-    {
-        name: "back",
-        message: "Boston",
-    },
-    {
-        name: "front",
-        message: "What ocean surrounds Florida's east coast?"
-    },
-    {
-        name: "front",
-        message: "What ocean surrounds Florida's east coast?"
-    },
-    {
-        name: "back",
-        message: "Atlantic Ocean",
-    }
 ]);
 
+
 //cloze questions
-inquirer.prompt([
+// inquirer.prompt([
     {
         name: "partial",
         message: "________ is the color at the top of the rainbow",
